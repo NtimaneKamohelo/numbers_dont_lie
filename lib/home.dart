@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:numbers_dont_lie/list_provider.dart';
+import 'package:numbers_dont_lie/second.dart';
+import 'package:provider/provider.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -8,17 +11,14 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<int> numbers = [1,2,3,4]; 
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Consumer<NumbersListProvider>(
+        builder:((context, numbersProviderModel, child) =>  Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          int last = numbers.last;
-          setState(() {
-            numbers.add(last+1);
-          });
+          numbersProviderModel.add();
         },
         child: Icon(Icons.add,
           color: Colors.white,
@@ -29,33 +29,37 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.blue,
       ),
       body: SizedBox(
-        child: Column(
-          children: [
-            Text(numbers.last.toString(),
-                    style: const TextStyle(
-                      fontSize: 30,
-                    ),),
-            Expanded(
-              child: ListView.builder(
-                itemCount: numbers.length,
-                itemBuilder: (context, index) {
-                  return Text(
-                    numbers[index].toString(),
-                    style: const TextStyle(
-                      fontSize: 30,
-                    ),
-                  );
-                }
+          child: Column(
+            children: [
+              Text(
+                numbersProviderModel.numbers.last.toString(),
+                      style: const TextStyle(
+                        fontSize: 30,
+                      ),),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: numbersProviderModel.numbers.length,
+                  itemBuilder: (context, index) {
+                    return Text(
+                      numbersProviderModel.numbers[index].toString(),
+                      style: const TextStyle(
+                        fontSize: 30,
+                      ),
+                    );
+                  }
+                ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-
-              }, child: Text('Next Page'),
-              ),
-          ],
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const Second(),),);
+                }, 
+                child: Text('Next Page'),
+                ),
+            ],
+          ),
         ),
-      ),
+      )),
 
     );
   }

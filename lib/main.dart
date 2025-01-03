@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:numbers_dont_lie/home.dart';
+import 'package:numbers_dont_lie/list_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,10 +13,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      
-      home: Home(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => NumbersListProvider())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        
+        home: Home(),
+      ),
     );
   }
 }
