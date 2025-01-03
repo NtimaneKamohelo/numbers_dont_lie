@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class Second extends StatefulWidget {
+  final List<int> numbers;
+  const Second({super.key, required this.numbers});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Second> createState() => _SecondState();
 }
 
-class _HomeState extends State<Home> {
-  List<int> numbers = [1,2,3,4]; 
-
+class _SecondState extends State<Second> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          int last = numbers.last;
+          int last = widget.numbers.last;
           setState(() {
-            numbers.add(last+1);
+            widget.numbers.add(last+1);
           });
         },
         child: Icon(Icons.add,
@@ -31,16 +30,19 @@ class _HomeState extends State<Home> {
       body: SizedBox(
         child: Column(
           children: [
-            Text(numbers.last.toString(),
+            Text(widget.numbers.last.toString(),
                     style: const TextStyle(
                       fontSize: 30,
                     ),),
-            Expanded(
+            Container(
+              height: 200,
+              width: double.maxFinite,
               child: ListView.builder(
-                itemCount: numbers.length,
+                scrollDirection: Axis.horizontal,
+                itemCount: widget.numbers.length,
                 itemBuilder: (context, index) {
                   return Text(
-                    numbers[index].toString(),
+                    widget.numbers[index].toString(),
                     style: const TextStyle(
                       fontSize: 30,
                     ),
@@ -48,11 +50,6 @@ class _HomeState extends State<Home> {
                 }
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-
-              }, child: Text('Next Page'),
-              ),
           ],
         ),
       ),
