@@ -1,2 +1,2 @@
 # numbers_dontLie
-Here I am using State Management provider to merge to screens to display the same information
+Here I am using state Management provider to merge two screens to display the same information
