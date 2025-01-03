@@ -12,7 +12,7 @@ class NumbersListProvider extends ChangeNotifier {
     notifyListeners(); 
     //which ever widget is listening to this class 
     //it will notifier the users about the change that
-    // occured in different widget
+    //occured in different widget
   }
   
   

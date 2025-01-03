@@ -20,13 +20,20 @@ class _HomeState extends State<Home> {
         onPressed: () {
           numbersProviderModel.add();
         },
-        child: Icon(Icons.add,
+        backgroundColor: Colors.blue,
+        child: const Icon(Icons.add,
           color: Colors.white,
         ),
-        backgroundColor: Colors.blue,
       ),
       appBar: AppBar(
         backgroundColor: Colors.blue,
+        centerTitle: true,
+        title: const Text('First Screen',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
       ),
       body: SizedBox(
           child: Column(
@@ -50,11 +57,20 @@ class _HomeState extends State<Home> {
                 ),
               ),
               ElevatedButton(
+            
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const Second(),),);
                 }, 
-                child: Text('Next Page'),
+                child: Text('Next Page',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                ),
                 ),
             ],
           ),

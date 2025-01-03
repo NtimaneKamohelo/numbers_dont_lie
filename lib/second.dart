@@ -26,6 +26,13 @@ class _SecondState extends State<Second> {
       ),
       appBar: AppBar(
         backgroundColor: Colors.blue,
+        centerTitle: true,
+        title: Text('Second Screen',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
       ),
       body: SizedBox(
           child: Column(
